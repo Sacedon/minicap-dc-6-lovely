@@ -67,42 +67,31 @@ const discountValue = inject('discountValue');
 </form>
 
 
-<div v-for="plugin in plugins" :key="plugin.id" class="mb-8">
-  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-    <div class="flex flex-col md:flex-row">
-      <!-- Plugin Info -->
-      <div class="md:w-1/2 p-6 bg-green-600 text-white">
-        <h2 class="text-3xl font-semibold mb-4">{{ plugin.name }}</h2>
-        <div class="flex items-center text-gray-300 space-x-4 mb-4">
-          <div class="flex items-center">
+<table class="min-w-full divide-y divide-gray-200">
+  <thead>
+    <tr>
+      <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+      <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Type of Plants</th>
+      <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Price</th>
+      <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Description</th>
+      <th class="px-6 py-3 bg-gray-50"></th>
+    </tr>
+  </thead>
+  <tbody class="bg-green-700 divide-y divide-gray-200">
+    <tr v-for="plugin in plugins" :key="plugin.id">
+      <td class="px-6 py-4 whitespace-no-wrap">{{ plugin.name }}</td>
+      <td class="px-6 py-4 whitespace-no-wrap">{{ plugin.daws }}</td>
+      <td class="px-6 py-4 whitespace-no-wrap">${{ plugin.price }}</td>
+      <td class="px-6 py-4 whitespace-no-wrap">{{ plugin.description }}</td>
+      <td class="px-6 py-4 whitespace-no-wrap">
+        <button @click="openEditModal(plugin)" class="text-indigo-600 hover:text-indigo-900 font-semibold mr-2">Edit</button>
+        <button @click="deletePlugin(plugin.id)" class="text-red-600 hover:text-red-900 font-semibold">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-            <span class="ml-2">{{ plugin.daws }}</span>
-          </div>
-          <div class="flex items-center">
 
-            <span class="ml-2">${{ plugin.price }}</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Plugin Description -->
-      <div class="md:w-1/2 p-6 bg-green-600">
-        <div class="text-2xl font-semibold mb-4">Description:</div>
-        <p class="text-gray-700">{{ plugin.description }}</p>
-      </div>
-    </div>
-
-    <!-- Edit and Delete Buttons -->
-    <div class="p-6 bg-gray-100 flex items-center justify-center space-x-4">
-      <button @click="openEditModal(plugin)" class="text-indigo-600 hover:text-indigo-700 font-semibold">
-        Edit
-      </button>
-      <button @click="deletePlugin(plugin.id)" class="text-red-600 hover:text-red-700 font-semibold">
-        Delete
-      </button>
-    </div>
-  </div>
-</div>
 
 
 
